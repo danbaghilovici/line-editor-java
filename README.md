@@ -38,14 +38,14 @@ dealing with failing operating systems. Update systems such as patch (Unix)
 
 ##Implementation:
 
-The editor consists of two main classes: `Editor` and `Interpreter?`
+The editor consists of two main classes: `Editor` and `Interpreter?`.
 
 
-The `Interpreter?` class will be the class in charge of managing and commands
-and outputing the results on the screen.
+The `Interpreter?` class is responsible for managing commands given 
+from the user and outputting the results on the screen.
 
 
-The `Editor` class will be the one in charge of executing the commands given
+The `Editor` class is the one in charge of executing the commands
 received from the `Interpreter?` class.
 
 ### `Editor` class
@@ -55,7 +55,7 @@ The `Editor` class's task is to load a text file from disk into memory, apply
  is issued, save the now modified file back to disk. All the changes will 
  happen in memory and will not be saved into the disk until the command is given.  
 To load the file into memory, the `Editor` will read a file line by line and 
-store each line into an array, so that it the end it will resolve into just
+store each line into an array, so that in the end it will resolve into just
 an array of `String`, where each position `i` will represent the `i`nt line 
 in the file.
 
@@ -82,31 +82,68 @@ it has not yet been named.
  The file isn't stored to the disk until `saveFile()` is called.
  
  ##### Line modification:
-- `void insertLine(String newline)`: inserts a new line before 
+- `void insertLine(String newline)`: Inserts a new line before 
 the current line. If the current line is at the end of the file then
 it's just adds it at the end of the file. 
 The new line becomes the new current line.
 
-- `void removeLine()`: deletes the current line. The new current line 
+- `void removeLine()`: Deletes the current line. The new current line 
 will be the next line after the deleted one. If the current line is at 
 the end of the file, it does nothing.
 
-- `void replaceLine(String newLine)`: replaces the current line with `newLine`.
+- `void replaceLine(String newLine)`: Replaces the current line with `newLine`.
 If the current line is at the end of the file, it appends `newLine` to the file.
 The current line moves to the last line of the file.
 
-- `String getCurrentLine()`: returns the text from the current line, or `null`
+- `String getCurrentLine()`: Returns the text from the current line, or `null`
 the file is at the end of the file.
 
-- `void nextLine()`: moves the current line to the next line, unless the current
+- `void nextLine()`: Moves the current line to the next line, unless the current
 line is already at the end of the file.
 
-- `void previousLine()`: moves the current line to the previous line, unless 
+- `void previousLine()`: Moves the current line to the previous line, unless 
 the current line is already at the start of the file.
 
-- `void goToLine(int lineNumber)`: moves the current line to the position 
+- `void goToLine(int lineNumber)`: Moves the current line to the position 
 `lineNumber`. If `lineNumer`<=1, it moves to the the start of the file, if
 `lineNumber` >= number of lines of the file, it gets to the end. 
+
+##### File state
+
+- `boolean getState()`: Returns a boolean with the current state of the file.
+
+- `void clearState()`: Changes the state to not modified. To save the changes
+the editor must call the `saveFile()` method.
+
+
+###### Data visualisation
+
+- `void toString()`: Returns a string showing:
+    
+    - the line number.
+    - the cursor (>) indicating if the line is the current line.
+    - the entire line of the file.
+    
+    Example:
+    
+        1 This is a line.
+        2>This is another line.
+        3 This is yet another.
+        .
+        .
+        .
+    
+- `String infoString()`: Returns a string showing all the information about the
+current file.
+
+##### Word Searching
+
+- `String indexString()`: Returns a string showing all the words that appear 
+in the file, as well as how many times the word appears.
+
+-`boolean advanceWord(String word)`: Moves the current line to the first line
+that contains the word `word`. Returns `true` if has found a line with that word
+or `false` if not (in this case the current line doesn't change).
 
 ### `Interpreter?` class
 
