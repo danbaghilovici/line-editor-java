@@ -141,12 +141,15 @@ current file.
 - `String indexString()`: Returns a string showing all the words that appear 
 in the file, as well as how many times the word appears.
 
--`boolean advanceWord(String word)`: Moves the current line to the first line
+- `boolean advanceWord(String word)`: Moves the current line to the first line
 that contains the word `word`. Returns `true` if has found a line with that word
 or `false` if not (in this case the current line doesn't change).
 
 ### `Interpreter?` class
 
-//To Do
+The `Interpreter` class's task is to show the user a well defined set of 
+commands, accept and interpret the user's input and execute the command given. 
+
+//TO COMPLETE
 
 
