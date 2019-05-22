@@ -1,3 +1,5 @@
+package core;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -45,7 +47,7 @@ public class Editor {
         this.linesIterator=this.fileLines.listIterator();
     }
 
-    public void readFile() throws IOException {
+    public void loadFile() throws IOException {
         // Clear the contents of the old file
         this.fileLines.clear();
         // Read file
@@ -70,7 +72,7 @@ public class Editor {
         StringBuilder result=new StringBuilder();
         ListIterator<String> auxIter=this.fileLines.listIterator();
         if (!auxIter.hasNext()){
-            return result.append("-- Empty file -- \n").toString();
+            return result.append("-- Empty file --").toString();
             //return result.append(lineCounter+">").toString();
         }
         while(auxIter.hasNext()){
@@ -83,6 +85,11 @@ public class Editor {
             result.append(lineCounter+">\n");
         }
         return result.toString();
+    }
+
+    public String infoString(){
+        return "("+this.getFileName()+", "+this.fileLines.size()+" lines, current "+(this.linesIterator.nextIndex()+1)+
+                (getState()?" MODIFIED)":")");
     }
 
     public String getFileName() {
@@ -161,11 +168,6 @@ public class Editor {
 
     public void clearState(){
         this.modified=false;
-    }
-
-    public String infoString(){
-        //TO DO
-        return null;
     }
 
 

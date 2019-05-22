@@ -1,4 +1,4 @@
-##Line Editor-Java
+##Line core.Editor-Java
 
 From **[wikipedia](https://en.wikipedia.org/wiki/Line_editor)**:
 
@@ -38,33 +38,33 @@ dealing with failing operating systems. Update systems such as patch (Unix)
 
 ##Implementation:
 
-The editor consists of two main classes: `Editor` and `Interpreter?`.
+The editor consists of two main classes: `core.Editor` and `core.Interpreter?`.
 
 
-The `Interpreter?` class is responsible for managing commands given 
+The `core.Interpreter?` class is responsible for managing commands given 
 from the user and outputting the results on the screen.
 
 
-The `Editor` class is the one in charge of executing the commands
-received from the `Interpreter?` class.
+The `core.Editor` class is the one in charge of executing the commands
+received from the `core.Interpreter?` class.
 
-### `Editor` class
+### `core.Editor` class
 
-The `Editor` class's task is to load a text file from disk into memory, apply
- the commands given by the `Interpreter?` class and then if the command
+The `core.Editor` class's task is to load a text file from disk into memory, apply
+ the commands given by the `core.Interpreter?` class and then if the command
  is issued, save the now modified file back to disk. All the changes will 
  happen in memory and will not be saved into the disk until the command is given.  
-To load the file into memory, the `Editor` will read a file line by line and 
+To load the file into memory, the `core.Editor` will read a file line by line and 
 store each line into an array, so that in the end it will resolve into just
 an array of `String`, where each position `i` will represent the `i`nt line 
 in the file.
 
 The class has the next methods:
 ##### Constructors, read & write:
-- (Constructor) `Editor()`: Empty constructor that creates a new empty 
+- (Constructor) `core.Editor()`: Empty constructor that creates a new empty 
 nameless file in memory.
 
-- (Constructor) `Editor(String filename) throws FileNotFoundException`: Loads 
+- (Constructor) `core.Editor(String filename) throws FileNotFoundException`: Loads 
 the file `filename` from disk. The first line of the file will be the current line.
  Can also throw an exception.
  
@@ -145,9 +145,9 @@ in the file, as well as how many times the word appears.
 that contains the word `word`. Returns `true` if has found a line with that word
 or `false` if not (in this case the current line doesn't change).
 
-### `Interpreter?` class
+### `core.Interpreter?` class
 
-The `Interpreter` class's task is to show the user a well defined set of 
+The `core.Interpreter` class's task is to show the user a well defined set of 
 commands, accept and interpret the user's input and execute the command given. 
 
 //TO COMPLETE
