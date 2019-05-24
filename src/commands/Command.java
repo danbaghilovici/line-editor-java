@@ -4,9 +4,8 @@ import core.Editor;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class Command {
+public class Command{
 
     public static final String COMMAND_STRING_OVERWRITE="Overwrite current line";
     public static final String COMMAND_STRING_INSERT="Insert before current line";
@@ -24,28 +23,24 @@ public class Command {
     private char commandOption;
     private ArrayList<String> commandParameters;
     private String commandDescription;
-    private boolean requireParameters;
+    private boolean acceptsParameters;
 
 
-    public Command(char commandOption, ArrayList<String> commandParameters, String commandDescription, boolean requireParameters) {
+    public Command(char commandOption, ArrayList<String> commandParameters, String commandDescription, boolean acceptsParameters) {
         this.commandOption = commandOption;
         this.commandParameters = commandParameters;
         this.commandDescription = commandDescription;
-        this.requireParameters = requireParameters;
+        this.acceptsParameters = acceptsParameters;
     }
 
     public void clearCommandParameters(){this.commandParameters.clear();}
 
     public char getCommandOption() {
-        return commandOption;
-    }
-
-    public void setCommandOption(char commandOption) {
-        this.commandOption = commandOption;
+        return this.commandOption;
     }
 
     public ArrayList<String> getCommandParameters() {
-        return commandParameters;
+        return this.commandParameters;
     }
 
     public void setCommandParameters(ArrayList<String> commandParameters) {
@@ -53,34 +48,23 @@ public class Command {
     }
 
     public String getCommandDescription() {
-        return commandDescription;
+        return this.commandDescription;
     }
 
-    public void setCommandDescription(String commandDescription) {
-        this.commandDescription = commandDescription;
+    public boolean acceptsParameters() {
+        return this.acceptsParameters;
     }
 
-    public boolean isRequireParameters() {
-        return requireParameters;
-    }
-
-    public void setRequireParameters(boolean requireParameters) {
-        this.requireParameters = requireParameters;
-    }
-
-    private boolean commandHasParameters(){
-        return this.commandParameters.size()!=0;
+    private boolean hasParameters(){
+        return this.commandParameters!=null && this.commandParameters.size()!=0;
     }
 
     public boolean isCommandReady(){
-        return this.requireParameters && this.commandHasParameters();
+        return this.acceptsParameters && this.hasParameters();
     }
 
-    public void executeCommand(Editor editor) throws IllegalArgumentException {
-        if(!isCommandReady()){
-            throw new IllegalArgumentException("Command require arguments");
-        }
-
+    public void executeCommand(Editor editor) throws Exception {
+        // Depends on the type of command
     }
 
     public String commandToString(){
@@ -94,6 +78,5 @@ public class Command {
     public boolean equals(char option){
         return option==this.commandOption;
     }
-
 
 }

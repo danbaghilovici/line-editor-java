@@ -19,7 +19,6 @@ public class RegressLineCommand extends Command{
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
-        editor.nextLine();
+
     }
 }

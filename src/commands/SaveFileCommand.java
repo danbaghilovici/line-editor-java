@@ -25,12 +25,6 @@ public class SaveFileCommand extends Command{
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
-        try {
-            editor.saveFile();
-        }catch (IOException e){
-            // TO DO ERROR HANDLING
-        }
 
     }
 }

@@ -6,12 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class QuitCommand extends Command{
-    private static final char COMMAND_OPTION='q';
+    public static final char COMMAND_OPTION='q';
     private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_QUIT;
     // Need to check
     private static final boolean COMMAND_REQUIRES_PARAMETERS =false;
 
     private ArrayList<String> commandParameters;
+
+
 
     public QuitCommand() {
         super(COMMAND_OPTION, null, COMMAND_DESCRIPTION, COMMAND_REQUIRES_PARAMETERS);
@@ -24,8 +26,10 @@ public class QuitCommand extends Command{
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
+        //super.executeCommand(editor);
 
 
     }
+
+
 }

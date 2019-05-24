@@ -23,7 +23,7 @@ public class GotoLineCommand extends Command{
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
-        editor.goToLine(Integer.parseInt(this.commandParameters.get(0)));
+        //super.executeCommand(editor);
+        //editor.goToLine(Integer.parseInt(this.commandParameters.get(0)));
     }
 }

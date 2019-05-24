@@ -21,7 +21,7 @@ public class ShowHelpCommand extends Command{
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
+        //super.executeCommand(editor);
         //TO DO
 
     }

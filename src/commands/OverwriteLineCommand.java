@@ -22,7 +22,6 @@ public class OverwriteLineCommand extends Command {
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
-        editor.replaceLine(this.commandParameters.get(0));
+        //
     }
 }

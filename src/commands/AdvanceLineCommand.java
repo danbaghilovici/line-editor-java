@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AdvanceLineCommand extends Command{
     private static final char COMMAND_OPTION='+';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_ADVANCE;
+    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_NEXTLINE;
     private static final boolean COMMAND_REQUIRES_PARAMETERS =false;
 
     private ArrayList<String> commandParameters;
@@ -19,7 +19,7 @@ public class AdvanceLineCommand extends Command{
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
-        editor.nextLine();
+        //super.executeCommand(editor);
+        //editor.nextLine();
     }
 }

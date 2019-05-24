@@ -19,7 +19,7 @@ public class DeleteLineCommand extends Command{
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
-        editor.removeLine();
+        //super.executeCommand(editor);
+        //editor.removeLine();
     }
 }

@@ -24,12 +24,12 @@ public class LoadFileCommand extends Command{
 
     @Override
     public void executeCommand(Editor editor){
-        super.executeCommand(editor);
+        /*super.executeCommand(editor);
         try {
             editor.loadFile();
         }catch (IOException e){
             // TO DO ERROR HANDLING
-        }
+        }*/
 
     }
 }

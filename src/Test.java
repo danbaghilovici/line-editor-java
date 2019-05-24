@@ -1,12 +1,12 @@
 import core.Editor;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        Editor ed=new Editor("test.txt");
-        System.out.println(ed.toString());
-        System.out.println(ed.getCurrentLine());
+        Scanner s=new Scanner(System.in);
+        System.out.println(s.nextByte());
 
 
 
