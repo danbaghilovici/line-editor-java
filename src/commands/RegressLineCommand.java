@@ -2,23 +2,24 @@ package commands;
 
 import core.Editor;
 
-import java.util.ArrayList;
-
-public class RegressLineCommand extends Command{
+public class RegressLineCommand extends Command implements ISpecificExecution{
     private static final char COMMAND_OPTION='-';
     private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_PREVIOUSLINE;
     private static final boolean COMMAND_REQUIRES_PARAMETERS =false;
 
-    private ArrayList<String> commandParameters;
 
 
     public RegressLineCommand() {
         super(COMMAND_OPTION, null, COMMAND_DESCRIPTION, COMMAND_REQUIRES_PARAMETERS);
-        //this.commandParameters = commandParameters;
     }
 
     @Override
-    public void executeCommand(Editor editor){
+    public void executeCommand(Editor editor)throws Exception{
+        executeAndClearParameters(editor);
+    }
 
+    @Override
+    public void executeAndClearParameters(Editor editor)  {
+        editor.previousLine();
     }
 }

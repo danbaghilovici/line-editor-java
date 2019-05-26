@@ -71,6 +71,7 @@ public class Interpreter {
         //String[] words = args.split("[^a-zA-ZaeiońÁÉÍÓUÑouÖÜaeiouÀÈÌÒÙcCiÏ·]+");
         //String[] words=args.split(" ");
         if(command.acceptsParameters()){
+            // must make parse compatible with lower intial capacity
             ArrayList<String> commandParams=new ArrayList<>(words.length-1);
             for (int i=1;i<words.length;i++){
                 commandParams.add(words[i]);
@@ -80,7 +81,7 @@ public class Interpreter {
         try {
             command.executeCommand(fileEditor);
         }catch (Exception e){
-            System.err.println(e.getMessage());
+            System.err.println(e.getCause());
         }
     }
 
@@ -122,6 +123,10 @@ public class Interpreter {
             }while(!correctFormat);
         }while(commandOption!=QuitCommand.COMMAND_OPTION);
 
+    }
+
+    public static void printText(String s){
+        System.out.println(s);
     }
 
 }

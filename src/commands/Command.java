@@ -4,6 +4,7 @@ import core.Editor;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class Command{
 
@@ -65,6 +66,7 @@ public class Command{
 
     public void executeCommand(Editor editor) throws Exception {
         // Depends on the type of command
+        // Im sure there is a better way
     }
 
     public String commandToString(){
@@ -77,6 +79,15 @@ public class Command{
 
     public boolean equals(char option){
         return option==this.commandOption;
+    }
+
+    public static String arrayToString(ArrayList<String> arrayList){
+        StringBuilder result=new StringBuilder();
+        ListIterator<String> auxInter=arrayList.listIterator();
+        while (auxInter.hasNext()){
+            result.append(auxInter.next()+"");
+        }
+        return result.toString();
     }
 
 }

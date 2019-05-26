@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Editor {
-    public static final String DEFAULT_FILENAME="NO NAME";
+    private static final String EXCEPTION_MESSAGE_NO_FILENAME="The file has not been named yet";//add somehting more
+    private static final String DEFAULT_FILENAME="NO NAME";
+    private static final String DEFAULT_FILE_EXTENTION=".txt";
 
     private List<String> fileLines;
     private ListIterator<String> linesIterator;
@@ -20,6 +22,7 @@ public class Editor {
         // Initialize empty params
         this.fileLines=new ArrayList<String>();
         this.linesIterator=fileLines.listIterator();
+        this.fileName=DEFAULT_FILENAME;
     }
 
     public Editor(String filename) throws IOException {
@@ -37,23 +40,30 @@ public class Editor {
     }
 
     public void saveFile() throws IOException {
+        if (this.fileName==null || (this.fileName.equals(DEFAULT_FILENAME) && this.modified)){
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NO_FILENAME);
+        }
         Path pathToFile = Paths.get(this.fileName);
         BufferedWriter bufferedWriter= Files.newBufferedWriter(pathToFile);
-        for (String line: this.fileLines){
-            bufferedWriter.write(line);
+        ListIterator<String> auxIter=fileLines.listIterator();
+        while (auxIter.hasNext()){
+            bufferedWriter.write(auxIter.next());
             bufferedWriter.newLine();
         }
+        bufferedWriter.close();
         this.modified=false;
-        this.linesIterator=this.fileLines.listIterator();
+        //this.linesIterator=this.fileLines.listIterator();
     }
 
-    public void loadFile() throws IOException {
+    public void loadFile(String fileToLoad) throws IOException {
         // Clear the contents of the old file
         this.fileLines.clear();
         // Read file
-        readFile(this.fileName);
+        readFile(fileToLoad==null?this.fileName:fileToLoad);
         this.modified=false;
         this.linesIterator=this.fileLines.listIterator();
+        this.fileName=fileToLoad;
+
 
     }
 
@@ -120,6 +130,7 @@ public class Editor {
 
     public void removeLine(){
         if (this.linesIterator.hasNext()){
+            this.linesIterator.next();
             this.linesIterator.remove();
             this.modified=true;
         }
@@ -144,7 +155,7 @@ public class Editor {
         if (lineNumber<=1){
             this.linesIterator=fileLines.listIterator();
         }else{
-            if (lineNumber>=this.fileLines.size()){
+            if (lineNumber>this.fileLines.size()){
                 auxIter=this.fileLines.listIterator();
                 while (auxIter.hasNext()){
                     auxIter.next();
@@ -152,9 +163,10 @@ public class Editor {
             }else{
                 auxIter=this.fileLines.listIterator();
                 while(auxIter.hasNext()){
-                    if (auxIter.nextIndex()==lineNumber){
+                    if (auxIter.nextIndex()+1==lineNumber){
                         break;
                     }
+                    auxIter.next();
                 }
             }
             this.linesIterator=auxIter;
