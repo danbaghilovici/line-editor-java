@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+
 public class Editor {
     private static final String EXCEPTION_MESSAGE_NO_FILENAME="The file has not been named yet";//add somehting more
     private static final String DEFAULT_FILENAME="NO NAME";
@@ -181,10 +182,6 @@ public class Editor {
     public void clearState(){
         this.modified=false;
     }
-
-
-
-
 
 
 }

@@ -8,23 +8,11 @@ import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Interpreter {
-
-    // ANSII codes for printing text with color
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
-
     // Static separators and strings
     private static final String SEPARATOR_STRING="----------------------";
     private static final String EDITOR_HELP_STRING="Enter command ('?') for help menu";
     private static final char TERMINAL_CURSOR='$';
-    // IMPLEMENT WITH HASHMAP LEATER ON
+    // IMPLEMENT WITH HASHMAP LEATER
     private static final int NUMBER_OF_AVAILABLE_COMMANDS=10;
     private static final ArrayList<Command> AVAILABLE_COMMANDS=new ArrayList<>(NUMBER_OF_AVAILABLE_COMMANDS);
 
@@ -81,7 +69,8 @@ public class Interpreter {
         try {
             command.executeCommand(fileEditor);
         }catch (Exception e){
-            System.err.println(e.getCause());
+            System.err.println("Command could not be executed");
+
         }
     }
 
@@ -94,7 +83,7 @@ public class Interpreter {
             System.out.println(fileEditor);
             System.out.println(SEPARATOR_STRING);
             System.out.println(fileEditor.infoString());
-            System.out.println(ANSI_RED+EDITOR_HELP_STRING+ANSI_RESET);
+            System.out.println(EDITOR_HELP_STRING);
 
             // Splitting the string into words this way will remove the intended spaces between the words
             // for example "hello___there" will convert into "hello_there"

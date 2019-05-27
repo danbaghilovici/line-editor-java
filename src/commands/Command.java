@@ -5,6 +5,7 @@ import core.Editor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Objects;
 
 public class Command{
 
@@ -90,4 +91,16 @@ public class Command{
         return result.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Command)) return false;
+        Command command = (Command) o;
+        return commandOption == command.commandOption;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(commandOption);
+    }
 }

@@ -28,7 +28,7 @@ public class LoadFileCommand extends Command implements ISpecificExecution{
     @Override
     public void executeAndClearParameters(Editor editor) throws IOException,IllegalArgumentException {
         if (super.getCommandParameters()==null || super.getCommandParameters().size()==0){
-            throw new IllegalArgumentException("No file name");
+            throw new IllegalArgumentException("No file argument provided");
         }
         editor.loadFile(super.getCommandParameters().get(0));
         super.clearCommandParameters();
