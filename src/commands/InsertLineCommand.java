@@ -1,14 +1,13 @@
 package commands;
 
 import core.Editor;
+import interfaces.ISpecificExecution;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ListIterator;
 
-public class InsertLineCommand extends Command implements ISpecificExecution{
+public class InsertLineCommand extends Command implements ISpecificExecution {
     private static final char COMMAND_OPTION='i';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_INSERT;
+    private static final String COMMAND_DESCRIPTION="INSERT NEW LINE";
     private static final boolean COMMAND_REQUIRES_PARAMETERS =true;
 
     public InsertLineCommand() {
@@ -20,7 +19,7 @@ public class InsertLineCommand extends Command implements ISpecificExecution{
     }
 
     @Override
-    public void executeCommand(Editor fileEditor) throws Exception {
+    public void executeCommand(Editor fileEditor) {
         this.executeAndClearParameters(fileEditor);
     }
 
@@ -30,4 +29,5 @@ public class InsertLineCommand extends Command implements ISpecificExecution{
         editor.insertLine(Command.arrayToString(super.getCommandParameters()));
         super.clearCommandParameters();
     }
+
 }

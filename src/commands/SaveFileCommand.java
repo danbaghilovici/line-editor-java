@@ -1,13 +1,13 @@
 package commands;
 
 import core.Editor;
+import interfaces.ISpecificExecution;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class SaveFileCommand extends Command implements ISpecificExecution{
+public class SaveFileCommand extends Command implements ISpecificExecution {
     private static final char COMMAND_OPTION='w';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_SAVE;
+    private static final String COMMAND_DESCRIPTION="Save file";
     // Need to check
     private static final boolean COMMAND_REQUIRES_PARAMETERS =true;
 
@@ -32,5 +32,10 @@ public class SaveFileCommand extends Command implements ISpecificExecution{
         }
         editor.saveFile();
         super.clearCommandParameters();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

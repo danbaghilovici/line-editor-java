@@ -70,7 +70,12 @@ public class Editor {
 
     private void readFile(String filename) throws IOException {
         Path pathToFile = Paths.get(filename);
-        BufferedReader bufferedReader = Files.newBufferedReader(pathToFile);
+        BufferedReader bufferedReader;
+        try {
+           bufferedReader = Files.newBufferedReader(pathToFile);
+        }catch (Exception e){
+            throw new IOException("File could not be opened");
+        }
         String line ;
         while ((line = bufferedReader.readLine()) != null) {
             this.fileLines.add(line);
@@ -100,7 +105,7 @@ public class Editor {
 
     public String infoString(){
         return "("+this.getFileName()+", "+this.fileLines.size()+" lines, current "+(this.linesIterator.nextIndex()+1)+
-                (getState()?" MODIFIED)":")");
+                (getState()?", MODIFIED)":")");
     }
 
     public String getFileName() {

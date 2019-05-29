@@ -1,12 +1,11 @@
 package commands;
 
 import core.Editor;
+import interfaces.ISpecificExecution;
 
-import java.util.ArrayList;
-
-public class DeleteLineCommand extends Command implements ISpecificExecution{
+public class DeleteLineCommand extends Command implements ISpecificExecution {
     private static final char COMMAND_OPTION='d';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_DELETE;
+    private static final String COMMAND_DESCRIPTION="Delete line";
     private static final boolean COMMAND_REQUIRES_PARAMETERS =false;
 
     public DeleteLineCommand() {
@@ -21,5 +20,9 @@ public class DeleteLineCommand extends Command implements ISpecificExecution{
     @Override
     public void executeAndClearParameters(Editor editor) {
         editor.removeLine();
+    }
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

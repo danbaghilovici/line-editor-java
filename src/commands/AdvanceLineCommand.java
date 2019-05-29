@@ -1,12 +1,11 @@
 package commands;
 
 import core.Editor;
+import interfaces.ISpecificExecution;
 
-import java.util.ArrayList;
-
-public class AdvanceLineCommand extends Command implements ISpecificExecution{
+public class AdvanceLineCommand extends Command implements ISpecificExecution {
     private static final char COMMAND_OPTION='+';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_NEXTLINE;
+    private static final String COMMAND_DESCRIPTION="Go to next line";
     private static final boolean COMMAND_REQUIRES_PARAMETERS =false;
 
 
@@ -22,5 +21,9 @@ public class AdvanceLineCommand extends Command implements ISpecificExecution{
     @Override
     public void executeAndClearParameters(Editor editor) {
         editor.nextLine();
+    }
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

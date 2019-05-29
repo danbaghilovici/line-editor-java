@@ -1,13 +1,11 @@
 package commands;
 
 import core.Editor;
+import interfaces.ISpecificExecution;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-public class QuitCommand extends Command implements ISpecificExecution{
+public class QuitCommand extends Command implements ISpecificExecution {
     public static final char COMMAND_OPTION='q';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_QUIT;
+    private static final String COMMAND_DESCRIPTION="Quit editor";
     private static final boolean COMMAND_REQUIRES_PARAMETERS =false;
 
 
@@ -24,5 +22,10 @@ public class QuitCommand extends Command implements ISpecificExecution{
     @Override
     public void executeAndClearParameters(Editor editor) {
         // TO DO
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

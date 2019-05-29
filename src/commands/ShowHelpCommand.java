@@ -2,13 +2,15 @@ package commands;
 
 import core.Editor;
 import core.Interpreter;
+import interfaces.ISpecificExecution;
+import launcher.LineEditor;
 
-import java.io.IOException;
-import java.util.ArrayList;
 
-public class ShowHelpCommand extends Command implements ISpecificExecution{
+import java.util.ListIterator;
+
+public class ShowHelpCommand extends Command implements ISpecificExecution {
     private static final char COMMAND_OPTION='?';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_HELP;
+    private static final String COMMAND_DESCRIPTION="Show help menu";
     private static final boolean COMMAND_REQUIRES_PARAMETERS =false;
 
     public ShowHelpCommand() {
@@ -22,20 +24,18 @@ public class ShowHelpCommand extends Command implements ISpecificExecution{
 
     @Override
     public void executeAndClearParameters(Editor editor) {
-        // this will do for now
-        final String menuString =
-                " o line	Overwrite curent line\n" +
-                        " i line  	Insert before current line\n" +
-                        " d  		Delete current linen\n" +
-                        " g	number	Goto to line number\n" +
-                        " + 		Advances to the next line\n" +
-                        " - 		Goes to previous line\n" +
-                        " w [n]  	Save file with name to disk\n" +
-                        " l  		Load file from disk\n" +
-                        " I  		Prints the word Index\n" +
-                        " s	word	Advances to next line that contains word\n" +
-                        " ?  		Show this help\n" +
-                        " q  		Quit the editor\n";
-        Interpreter.printText(menuString);
+        StringBuilder stringBuilder=new StringBuilder();
+        ListIterator<Command> commandsListIterator= LineEditor.getAvailableCommands().listIterator();
+        while (commandsListIterator.hasNext()){
+            stringBuilder.append(commandsListIterator.next().getCommandInfo());
+            stringBuilder.append("\n");
+        }
+        Interpreter.printText(stringBuilder.toString());
+
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

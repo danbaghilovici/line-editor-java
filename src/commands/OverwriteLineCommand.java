@@ -1,12 +1,13 @@
 package commands;
 
 import core.Editor;
+import interfaces.ISpecificExecution;
 
 import java.util.ArrayList;
 
-public class OverwriteLineCommand extends Command implements ISpecificExecution{
+public class OverwriteLineCommand extends Command implements ISpecificExecution {
     private static final char COMMAND_OPTION='o';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_OVERWRITE;
+    private static final String COMMAND_DESCRIPTION="Overwrite line";
     private static final boolean COMMAND_REQUIRES_PARAMETERS =true;
 
     public OverwriteLineCommand() {
@@ -26,5 +27,10 @@ public class OverwriteLineCommand extends Command implements ISpecificExecution{
         editor.replaceLine(Command.arrayToString(super.getCommandParameters()));
         super.clearCommandParameters();
 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

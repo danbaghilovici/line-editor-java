@@ -2,52 +2,41 @@ package core;
 
 import commands.*;
 
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Interpreter {
-    // Static separators and strings
+    // Static
+    // separators and strings
     private static final String SEPARATOR_STRING="----------------------";
     private static final String EDITOR_HELP_STRING="Enter command ('?') for help menu";
     private static final char TERMINAL_CURSOR='$';
-    // IMPLEMENT WITH HASHMAP LEATER
-    private static final int NUMBER_OF_AVAILABLE_COMMANDS=10;
-    private static final ArrayList<Command> AVAILABLE_COMMANDS=new ArrayList<>(NUMBER_OF_AVAILABLE_COMMANDS);
-
-
-    public static final Command[] AVAILABLE_COMMANDS_ARRAY=
-            {
-                    new OverwriteLineCommand(),
-                    new InsertLineCommand(),
-                    new DeleteLineCommand(),
-                    new GotoLineCommand(),
-                    new AdvanceLineCommand(),
-                    new RegressLineCommand(),
-                    new SaveFileCommand(),
-                    new LoadFileCommand(),
-                    new ShowHelpCommand(),
-                    new QuitCommand()
-            };
-
+    private static ArrayList<Command> AVAILABLE_COMMANDS;
 
     private Scanner inputScanner;
     private Editor fileEditor;
 
-    private void init(){
-        // FOR TESTING
-        AVAILABLE_COMMANDS.addAll(List.of(AVAILABLE_COMMANDS_ARRAY));
+    public Interpreter(ArrayList<Command> availableCommands) {
         this.inputScanner=new Scanner(System.in);
-        fileEditor=new Editor();
+        this.fileEditor=new Editor();
+        AVAILABLE_COMMANDS=availableCommands;
+    }
 
+    public Interpreter(ArrayList<Command> availableCommands,String filename) throws IOException {
+        this.inputScanner=new Scanner(System.in);
+        this.fileEditor=new Editor(filename);
+        AVAILABLE_COMMANDS=availableCommands;
     }
 
     private Command findCommand(char commandOption){
         ListIterator<Command> auxIter=AVAILABLE_COMMANDS.listIterator();
         while(auxIter.hasNext()){
             Command availableCommand=auxIter.next();
-            if (availableCommand.equals(commandOption)){
+            if (availableCommand.equalChars(commandOption)){
                 return availableCommand;
             }
         }
@@ -56,9 +45,9 @@ public class Interpreter {
 
     private void initAndExecuteCommand(Command command, String[] words){
         // gets all the words in a string
-        //String[] words = args.split("[^a-zA-ZaeiońÁÉÍÓUÑouÖÜaeiouÀÈÌÒÙcCiÏ·]+");
+        //String[] words = args.split("[^a-zA-ZaeionÌ�AÌ�EÌ�IÌ�OÌ�UNÌƒouOÌˆUÌˆaeiouAÌ€EÌ€IÌ€OÌ€UÌ€cCiIÌˆÂ·]+");
         //String[] words=args.split(" ");
-        if(command.acceptsParameters()){
+        if(command.doesCommandAcceptsParameters()){
             // must make parse compatible with lower intial capacity
             ArrayList<String> commandParams=new ArrayList<>(words.length-1);
             for (int i=1;i<words.length;i++){
@@ -68,15 +57,16 @@ public class Interpreter {
         }
         try {
             command.executeCommand(fileEditor);
+            // must get exact Exception
+        }catch (IOException e){
+            System.err.println("FILE COULD NOT BE OPENED/SAVED");
+            System.err.println(e.toString());
         }catch (Exception e){
-            System.err.println("Command could not be executed");
-
+            System.err.println(e.getLocalizedMessage());
         }
     }
 
     public void start(){
-        init();
-
         char commandOption='@';
         do {
             System.out.println(SEPARATOR_STRING);
@@ -118,4 +108,7 @@ public class Interpreter {
         System.out.println(s);
     }
 
+    public static ArrayList<Command> getAvailableCommands() {
+        return AVAILABLE_COMMANDS;
+    }
 }

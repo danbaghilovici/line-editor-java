@@ -1,12 +1,13 @@
 package commands;
 
 import core.Editor;
+import interfaces.ISpecificExecution;
 
 import java.util.ArrayList;
 
-public class GotoLineCommand extends Command implements ISpecificExecution{
+public class GotoLineCommand extends Command implements ISpecificExecution {
     private static final char COMMAND_OPTION='g';
-    private static final String COMMAND_DESCRIPTION=Command.COMMAND_STRING_GOTOLINE;
+    private static final String COMMAND_DESCRIPTION="GO TO LINE 'n'";
     private static final boolean COMMAND_REQUIRES_PARAMETERS =true;
 
     public GotoLineCommand() {
@@ -28,5 +29,9 @@ public class GotoLineCommand extends Command implements ISpecificExecution{
     public void executeAndClearParameters(Editor editor){
         editor.goToLine(Integer.parseInt(super.getCommandParameters().get(0)));
         super.clearCommandParameters();
+    }
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
