@@ -1,5 +1,7 @@
 package core;
 
+import launcher.LineEditor;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -70,12 +72,7 @@ public class Editor {
 
     private void readFile(String filename) throws IOException {
         Path pathToFile = Paths.get(filename);
-        BufferedReader bufferedReader;
-        try {
-           bufferedReader = Files.newBufferedReader(pathToFile);
-        }catch (Exception e){
-            throw new IOException("File could not be opened");
-        }
+        BufferedReader bufferedReader= Files.newBufferedReader(pathToFile);
         String line ;
         while ((line = bufferedReader.readLine()) != null) {
             this.fileLines.add(line);
@@ -94,7 +91,8 @@ public class Editor {
         while(auxIter.hasNext()){
             result.append((lineCounter++)+
                     (linesIterator.nextIndex()==auxIter.nextIndex()?">":" ")+
-                    auxIter.next()+"\n");
+                    auxIter.next().replaceAll(" ",LineEditor.WHITESPACE_SYMBOL)+"\n");
+            // only swap the text spaces
 
         }
         if (auxIter.nextIndex()==linesIterator.nextIndex()){

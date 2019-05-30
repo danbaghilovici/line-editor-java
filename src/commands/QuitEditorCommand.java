@@ -3,13 +3,13 @@ package commands;
 import core.Editor;
 import interfaces.ISpecificExecution;
 
-public class QuitCommand extends Command implements ISpecificExecution {
+public class QuitEditorCommand extends Command implements ISpecificExecution {
     public static final char COMMAND_OPTION='q';
     private static final String COMMAND_DESCRIPTION="Quit editor";
     private static final boolean COMMAND_REQUIRES_PARAMETERS =false;
 
 
-    public QuitCommand() {
+    public QuitEditorCommand() {
         super(COMMAND_OPTION, null, COMMAND_DESCRIPTION, COMMAND_REQUIRES_PARAMETERS);
     }
 

@@ -67,7 +67,8 @@ public class Command{
     }
     @Override
     public String toString(){
-        return commandOption+" "+commandDescription+(isCommandParametersValid()?arrayToString(commandParameters):"")+" accepts Parameters: "+acceptsParameters+", "+"contains Parameters:"+containsParameters;
+        return commandOption+" "+commandDescription+(isCommandParametersValid()?arrayToString(commandParameters):"")+
+                " accepts Parameters: "+acceptsParameters+", "+"contains Parameters:"+containsParameters;
     }
 
 

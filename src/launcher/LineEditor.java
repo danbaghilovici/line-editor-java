@@ -8,6 +8,10 @@ import commands.*;
 import core.Interpreter;
 
 public class LineEditor {
+    //get console dimensions and handlers on change
+
+    public static final boolean USE_WHITESPACE_SYMBOL=true;
+    public static final String WHITESPACE_SYMBOL="\u2423";
 	
 	private static final int NUMBER_OF_AVAILABLE_COMMANDS=10;
     private static final ArrayList<Command> AVAILABLE_COMMANDS=new ArrayList<>(NUMBER_OF_AVAILABLE_COMMANDS);
@@ -22,7 +26,7 @@ public class LineEditor {
                     new SaveFileCommand(),
                     new LoadFileCommand(),
                     new ShowHelpCommand(),
-                    new QuitCommand()
+                    new QuitEditorCommand()
             };
     private static Interpreter commandInterpreter;
 
@@ -48,8 +52,6 @@ public class LineEditor {
         }
         return true;
     }
-
-
 
     public static ArrayList<Command> getAvailableCommands() {
         return AVAILABLE_COMMANDS;

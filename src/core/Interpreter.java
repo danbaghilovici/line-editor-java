@@ -3,14 +3,11 @@ package core;
 import commands.*;
 
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Interpreter {
-    // Static
     // separators and strings
     private static final String SEPARATOR_STRING="----------------------";
     private static final String EDITOR_HELP_STRING="Enter command ('?') for help menu";
@@ -58,11 +55,13 @@ public class Interpreter {
         try {
             command.executeCommand(fileEditor);
             // must get exact Exception
+            // must add different types of exceptions
+            // also add more descriptive error messages
         }catch (IOException e){
-            System.err.println("FILE COULD NOT BE OPENED/SAVED");
-            System.err.println(e.toString());
+            System.err.println("OPERATION COULD NOT EXECUTE ON FILE!");
+            //System.err.println(e.toString());
         }catch (Exception e){
-            System.err.println(e.getLocalizedMessage());
+            System.err.println("ERROR!");
         }
     }
 
@@ -100,7 +99,7 @@ public class Interpreter {
                     }
                 }
             }while(!correctFormat);
-        }while(commandOption!=QuitCommand.COMMAND_OPTION);
+        }while(commandOption!= QuitEditorCommand.COMMAND_OPTION);
 
     }
 
